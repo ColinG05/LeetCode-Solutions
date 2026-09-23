@@ -1,34 +1,32 @@
 class Solution(object):
-#i forgot pointers are a yhing will redo
     def lengthOfLongestSubstring(self, s):
         """
         :type s: str
         :rtype: int
         """
         curr = 0 
-        length =0
-        longlength =0
+        length = 0
+        longlength = 0
+        output = ''
         a = list(s) 
-        CurrAns = ""
-        ans = ""
-        start =0 
-        while curr < len(a): # while there is still characters left 
-            if a[curr] in CurrAns: # is in alr 
-                length =1
-                start +=1 
-                curr = start
-                CurrAns = a[start]
-            else: # is not in the current ans already
-                CurrAns += a[curr]
+        
+        left = 0
+        right = 0
+
+        while right < len(a): 
+
+            if a[right] not in output:
+                output += a[right]
+                right += 1
                 length += 1
 
-            #if current lenth > the old one 
-            if length >= longlength: 
-                ans = CurrAns
+            else:
+                output = output[1:]
+                left += 1
+                length -= 1
+
+            if length > longlength: 
                 longlength = length
-            curr+=1
+
         return longlength
-
-
-            
-        
+#good code 
